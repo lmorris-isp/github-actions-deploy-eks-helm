@@ -66,6 +66,8 @@ inputs:
     plugins:
         description: 'Comma separated list of helm plugins to install. e.x: https://github.com/hypnoglow/helm-s3.git,https://github.com/someuser/helm-plugin.git'
         required: false
+    helm-s3-plugin-version:
+        description: 'Version for the https://github.com/hypnoglow/helm-s3 plugin'
     helm-wait:
         description: 'Add the --wait flag to helm'
         required: false
@@ -119,6 +121,7 @@ runs:
         HELM_REPOSITORY: ${{ inputs.chart-repository }}
         HELM_WAIT: ${{ inputs.helm-wait }}
         PLUGINS_LIST: ${{ inputs.plugins }}
+        HELM_S3_PLUGIN_VERSION: ${{ inputs.helm-s3-plugin-version}}
         HELM_ATOMIC: ${{ inputs.atomic }}
         HELM_ACTION: ${{ inputs.action }}
         DRY_RUN: ${{ inputs.dry-run }}

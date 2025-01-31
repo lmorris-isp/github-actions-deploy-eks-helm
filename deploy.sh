@@ -28,7 +28,11 @@ if [ -n "${PLUGINS_LIST}" ]; then
     for plugin in $plugins
     do
         echo "installing helm plugin: [$plugin]"
-        helm plugin install $plugin
+        if [[ -n "${HELM_S3_PLUGIN_VERSION}" && "${plugin}" == "https://github.com/hypnoglow/helm-s3.git" ]]; then
+          helm plugin install $plugin --version $HELM_S3_PLUGIN_VERSION
+        else
+          helm plugin install $plugin
+        fi
     done
 fi
 
